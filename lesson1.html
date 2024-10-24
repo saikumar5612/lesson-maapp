@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick a Card Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Basic styling for the grid and card layout */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns for 3 cards */
+            gap: 20px;
+            justify-items: center;
+            margin-top: 20px;
+        }
+        .card-container img {
+            width: 150px;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .card-container img:hover {
+            transform: scale(1.1);
+        }
+        .selected-card {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pick a Card</h1>
+
+        <!-- Grid for card selection -->
+        <div class="card-container">
+            <!-- Card 1: Ace of Hearts -->
+            <img src="{{ url_for('static', filename='images/ace_of_hearts.PNG') }}" alt="Ace of Hearts" onclick="selectCard('Ace of Hearts', 'ace_of_hearts.PNG')">
+
+            <!-- Card 2: 2 of Hearts -->
+            <img src="{{ url_for('static', filename='images/2_of_hearts.PNG') }}" alt="2 of Hearts" onclick="selectCard('2 of Hearts', '2_of_hearts.PNG')">
+
+            <!-- Card 3: 3 of Hearts -->
+            <img src="{{ url_for('static', filename='images/3_of_hearts.PNG') }}" alt="3 of Hearts" onclick="selectCard('3 of Hearts', '3_of_hearts.PNG')">
+        </div>
+
+        <!-- Display selected card -->
+        <div class="selected-card">
+            <h2>Selected Card:</h2>
+            <p id="card-name">None</p>
+            <img id="selected-card-image" src="" alt="Selected Card" style="display:none; width:150px;">
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Course</h1>
+        <form method="POST">
+            <input type="text" name="title" placeholder="Course Title" required>
+            <textarea name="description" placeholder="Course Description" required></textarea>
+            <input type="text" name="lesson_url" placeholder="Lesson URL" required>  <!-- Added lesson URL input -->
+            <button type="submit">Add Course</button>
+        </form>
+        <a href="/courses" class="btn-back">Back to Courses</a>
+    </div>
+</body>
+</html>

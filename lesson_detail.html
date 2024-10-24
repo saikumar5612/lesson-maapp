@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick a Card Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+
+    <style>
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        color: white;
+    }
+    h1, h3 {
+        text-align: center;
+    }
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .card-container button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    .card-container img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.2s, opacity 0.2s;
+    }
+    .card-container img:hover {
+        transform: scale(1.1);
+    }
+    .eliminated img {
+        opacity: 0.5;
+    }
+    .question-section {
+        margin-top: 30px;
+        text-align: center;
+    }
+    .question-section input {
+        padding: 10px;
+        width: 300px;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+    .question-section button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #selected-card, #results {
+        margin-top: 30px;
+    }
+    /* Set the color of "Selected Card" title and card name to black */
+    #selected-card h3, #card-display {
+        color: black;
+    }
+    #question-log {
+        list-style-type: none;
+        padding: 10px;
+    }
+    #question-log li {
+        background-color: #333;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+    }
+    /* Ensure question log entries are also black */
+    #question-log li, #results h3 {
+        color: white;
+        background-color: #800020;
+    }
+    .btn-back {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #800020;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Pick a Card</h1>
+        <div class="card-container">
+
+            <!-- Hearts Suit -->
+            <button onclick="selectCard('Ace of Hearts')">
+                <img src="{{ url_for('static', filename='images/ace_of_hearts.PNG') }}" alt="Ace of Hearts">
+            </button>
+            <button onclick="selectCard('2 of Hearts')">
+                <img src="{{ url_for('static', filename='images/2_of_hearts.PNG') }}" alt="2 of Hearts">
+            </button>
+            <button onclick="selectCard('3 of Hearts')">
+                <img src="{{ url_for('static', filename='images/3_of_hearts.PNG') }}" alt="3 of Hearts">
+            </button>
+            <button onclick="selectCard('4 of Hearts')">
+                <img src="{{ url_for('static', filename='images/4_of_hearts.PNG') }}" alt="4 of Hearts">
+            </button>
+            <button onclick="selectCard('5 of Hearts')">
+                <img src="{{ url_for('static', filename='images/5_of_hearts.PNG') }}" alt="5 of Hearts">
+            </button>
+            <button onclick="selectCard('6 of Hearts')">
+                <img src="{{ url_for('static', filename='images/6_of_hearts.PNG') }}" alt="6 of Hearts">
+            </button>
+            <button onclick="selectCard('7 of Hearts')">
+                <img src="{{ url_for('static', filename='images/7_of_hearts.PNG') }}" alt="7 of Hearts">
+            </button>
+            <button onclick="selectCard('8 of Hearts')">
+                <img src="{{ url_for('static', filename='images/8_of_hearts.PNG') }}" alt="8 of Hearts">
+            </button>
+            <button onclick="selectCard('9 of Hearts')">
+                <img src="{{ url_for('static', filename='images/9_of_hearts.PNG') }}" alt="9 of Hearts">
+            </button>
+            <button onclick="selectCard('10 of Hearts')">
+                <img src="{{ url_for('static', filename='images/10_of_hearts.PNG') }}" alt="10 of Hearts">
+            </button>
+            <button onclick="selectCard('Jack of Hearts')">
+                <img src="{{ url_for('static', filename='images/jack_of_hearts.PNG') }}" alt="Jack of Hearts">
+            </button>
+            <button onclick="selectCard('Queen of Hearts')">
+                <img src="{{ url_for('static', filename='images/queen_of_hearts.PNG') }}" alt="Queen of Hearts">
+            </button>
+            <button onclick="selectCard('King of Hearts')">
+                <img src="{{ url_for('static', filename='images/king_of_hearts.PNG') }}" alt="King of Hearts">
+            </button>
+
+            <!-- Diamonds Suit -->
+            <button onclick="selectCard('Ace of Diamonds')">
+                <img src="{{ url_for('static', filename='images/ace_of_diamonds.PNG') }}" alt="Ace of Diamonds">
+            </button>
+            <button onclick="selectCard('2 of Diamonds')">
+                <img src="{{ url_for('static', filename='images/2_of_diamonds.PNG') }}" alt="2 of Diamonds">
+            </button>
+            <button onclick="selectCard('3 of Diamonds')">
+                <img src="{{ url_for('static', filename='images/3_of_diamonds.PNG') }}" alt="3 of Diamonds">
+            </button>
+            <button onclick="selectCard('4 of Diamonds')">
+                <img src="{{ url_for('static', filename='images/4_of_diamonds.PNG') }}" alt="4 of Diamonds">
+            </button>
+            <button onclick="selectCard('5 of Diamonds')">
+                <img src="{{ url_for('static', filename='images/5_of_diamonds.PNG') }}" alt="5 of Diamonds">
+            </button>
+            <button onclick="selectCard('6 of Diamonds')">
+                <img src="{{ url_for('static', filename='images/6_of_diamonds.PNG') }}" alt="6 of Diamonds">
+            </button>
+            <button onclick="selectCard('7 of Diamonds')">
+                <img src="{{ url_for('static', filename='images/7_of_diamonds.PNG') }}" alt="7 of Diamonds">
+            </button>
+            <button onclick="selectCard('8 of Diamonds')">
+                <img src="{{ url_for('static', filename='images/8_of_diamonds.PNG') }}" alt="8 of Diamonds">
+            </button>
+            <button onclick="selectCard('9 of Diamonds')">
+                <img src="{{ url_for('static', filename='images/9_of_diamonds.PNG') }}" alt="9 of Diamonds">
+            </button>
+            <button onclick="selectCard('10 of Diamonds')">
+                <img src="{{ url_for('static', filename='images/10_of_diamonds.PNG') }}" alt="10 of Diamonds">
+            </button>
+            <button onclick="selectCard('Jack of Diamonds')">
+                <img src="{{ url_for('static', filename='images/jack_of_diamonds.PNG') }}" alt="Jack of Diamonds">
+            </button>
+            <button onclick="selectCard('Queen of Diamonds')">
+                <img src="{{ url_for('static', filename='images/queen_of_diamonds.PNG') }}" alt="Queen of Diamonds">
+            </button>
+            <button onclick="selectCard('King of Diamonds')">
+                <img src="{{ url_for('static', filename='images/king_of_diamonds.PNG') }}" alt="King of Diamonds">
+            </button>
+
+            <!-- Clubs Suit -->
+            <button onclick="selectCard('Ace of Clubs')">
+                <img src="{{ url_for('static', filename='images/ace_of_clubs.PNG') }}" alt="Ace of Clubs">
+            </button>
+            <button onclick="selectCard('2 of Clubs')">
+                <img src="{{ url_for('static', filename='images/2_of_clubs.PNG') }}" alt="2 of Clubs">
+            </button>
+            <button onclick="selectCard('3 of Clubs')">
+                <img src="{{ url_for('static', filename='images/3_of_clubs.PNG') }}" alt="3 of Clubs">
+            </button>
+            <button onclick="selectCard('4 of Clubs')">
+                <img src="{{ url_for('static', filename='images/4_of_clubs.PNG') }}" alt="4 of Clubs">
+            </button>
+            <button onclick="selectCard('5 of Clubs')">
+                <img src="{{ url_for('static', filename='images/5_of_clubs.PNG') }}" alt="5 of Clubs">
+            </button>
+            <button onclick="selectCard('6 of Clubs')">
+                <img src="{{ url_for('static', filename='images/6_of_clubs.PNG') }}" alt="6 of Clubs">
+            </button>
+            <button onclick="selectCard('7 of Clubs')">
+                <img src="{{ url_for('static', filename='images/7_of_clubs.PNG') }}" alt="7 of Clubs">
+            </button>
+            <button onclick="selectCard('8 of Clubs')">
+                <img src="{{ url_for('static', filename='images/8_of_clubs.PNG') }}" alt="8 of Clubs">
+            </button>
+            <button onclick="selectCard('9 of Clubs')">
+                <img src="{{ url_for('static', filename='images/9_of_clubs.PNG') }}" alt="9 of Clubs">
+            </button>
+            <button onclick="selectCard('10 of Clubs')">
+                <img src="{{ url_for('static', filename='images/10_of_clubs.PNG') }}" alt="10 of Clubs">
+            </button>
+            <button onclick="selectCard('Jack of Clubs')">
+                <img src="{{ url_for('static', filename='images/jack_of_clubs.PNG') }}" alt="Jack of Clubs">
+            </button>
+            <button onclick="selectCard('Queen of Clubs')">
+                <img src="{{ url_for('static', filename='images/queen_of_clubs.PNG') }}" alt="Queen of Clubs">
+            </button>
+            <button onclick="selectCard('King of Clubs')">
+                <img src="{{ url_for('static', filename='images/king_of_clubs.PNG') }}" alt="King of Clubs">
+            </button>
+
+            <!-- Spades Suit -->
+            <button onclick="selectCard('Ace of Spades')">
+                <img src="{{ url_for('static', filename='images/ace_of_spades.PNG') }}" alt="Ace of Spades">
+            </button>
+            <button onclick="selectCard('2 of Spades')">
+                <img src="{{ url_for('static', filename='images/2_of_spades.PNG') }}" alt="2 of Spades">
+            </button>
+            <button onclick="selectCard('3 of Spades')">
+                <img src="{{ url_for('static', filename='images/3_of_spades.PNG') }}" alt="3 of Spades">
+            </button>
+            <button onclick="selectCard('4 of Spades')">
+                <img src="{{ url_for('static', filename='images/4_of_spades.PNG') }}" alt="4 of Spades">
+            </button>
+            <button onclick="selectCard('5 of Spades')">
+                <img src="{{ url_for('static', filename='images/5_of_spades.PNG') }}" alt="5 of Spades">
+            </button>
+            <button onclick="selectCard('6 of Spades')">
+                <img src="{{ url_for('static', filename='images/6_of_spades.PNG') }}" alt="6 of Spades">
+            </button>
+            <button onclick="selectCard('7 of Spades')">
+                <img src="{{ url_for('static', filename='images/7_of_spades.PNG') }}" alt="7 of Spades">
+            </button>
+            <button onclick="selectCard('8 of Spades')">
+                <img src="{{ url_for('static', filename='images/8_of_spades.PNG') }}" alt="8 of Spades">
+            </button>
+            <button onclick="selectCard('9 of Spades')">
+                <img src="{{ url_for('static', filename='images/9_of_spades.PNG') }}" alt="9 of Spades">
+            </button>
+            <button onclick="selectCard('10 of Spades')">
+                <img src="{{ url_for('static', filename='images/10_of_spades.PNG') }}" alt="10 of Spades">
+            </button>
+            <button onclick="selectCard('Jack of Spades')">
+                <img src="{{ url_for('static', filename='images/jack_of_spades.PNG') }}" alt="Jack of Spades">
+            </button>
+            <button onclick="selectCard('Queen of Spades')">
+                <img src="{{ url_for('static', filename='images/queen_of_spades.PNG') }}" alt="Queen of Spades">
+            </button>
+            <button onclick="selectCard('King of Spades')">
+                <img src="{{ url_for('static', filename='images/king_of_spades.PNG') }}" alt="King of Spades">
+            </button>
+        </div>
+
+        <div id="selected-card">
+            <h3>Selected Card:</h3>
+            <p id="card-display">None</p>
+        </div>
+
+        <div id="question-section">
+            <h3>Ask Yes/No Questions</h3>
+            <input type="text" id="question" placeholder="Ask a Yes/No question">
+            <button onclick="askQuestion()">Ask Question</button>
+        </div>
+
+        <div id="results">
+            <h3>Results</h3>
+            <ul id="question-log"></ul>
+        </div>
+
+        <a href="/courses" class="btn-back">Back to Courses</a>
+    </div>
+<script>
+        const eliminatedCards = [];
+        function selectCard(cardName) {
+            document.getElementById('card-display').textContent = cardName;
+        }
+
+        function askQuestion() {
+            const question = document.getElementById('question').value;
+            if (question) {
+                const questionLog = document.getElementById('question-log');
+                const newLogEntry = document.createElement('li');
+                newLogEntry.textContent = question;
+                questionLog.appendChild(newLogEntry);
+                eliminateCard();
+                document.getElementById('question').value = '';
+            }
+        }
+
+        function eliminateCard() {
+            // Example logic: Randomly eliminate one card for demo purposes
+            const cards = document.querySelectorAll('.card-container button');
+            const randomCardIndex = Math.floor(Math.random() * cards.length);
+            const cardToEliminate = cards[randomCardIndex];
+            if (!eliminatedCards.includes(randomCardIndex)) {
+                cardToEliminate.classList.add('eliminated');
+                eliminatedCards.push(randomCardIndex);
+            }
+        }
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

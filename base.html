@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online School</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script> <!-- Link to JavaScript file -->
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/add_course">Add Course</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Online School Platform</p>
+    </footer>
+</body>
+</html>

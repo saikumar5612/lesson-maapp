@@ -1,0 +1,29 @@
+<!-- templates/courses.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Available Courses</h1>
+
+    <ul>
+        {% for course in courses %}
+        <li>
+            <a href="{{ url_for('lesson_detail', course_id=course.id) }}">{{ course.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Show the Add Course button only if the teacher is logged in -->
+    <!--{% if logged_in %}
+        <a href="{{ url_for('add_course') }}" class="btn">Add New Course</a>
+        <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+    {% else %}
+        <p>You must be logged in to add a new course. <a href="{{ url_for('login') }}" class="btn">Login</a></p>
+    {% endif %}-->
+</body>
+</html>
